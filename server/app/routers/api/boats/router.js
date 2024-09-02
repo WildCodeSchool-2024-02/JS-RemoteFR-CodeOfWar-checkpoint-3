@@ -8,8 +8,10 @@ const router = express.Router();
 
 const boatActions = require("../../../controllers/boatActions");
 
+const tileExists = require("../../../services/tileExists");
+
 router.get("/", boatActions.browse);
-router.put("/:id", boatActions.edit);
+router.put("/:id", tileExists, boatActions.edit);
 /* ************************************************************************* */
 
 module.exports = router;
