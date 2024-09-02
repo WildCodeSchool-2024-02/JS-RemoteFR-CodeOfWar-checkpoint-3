@@ -10,6 +10,10 @@ const { browse } = require("../../../controllers/boatActions");
 
 router.get("/", browse);
 
+const { update } = require("../../../controllers/boatActions");
+
+router.put("/", update);
+
 /* ************************************************************************* */
 
 module.exports = router;
