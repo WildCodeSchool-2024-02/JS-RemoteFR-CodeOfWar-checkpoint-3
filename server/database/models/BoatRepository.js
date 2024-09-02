@@ -14,13 +14,13 @@ class BoatRepository extends AbstractRepository {
         boat.name, 
         boat.coord_x, 
         boat.coord_y, 
-        tile.id, 
+        tile.id as tile_id, 
         tile.coord_x, 
         tile.coord_y, 
         tile.type, 
         tile.has_treasure
       FROM ${this.table}
-      LEFT JOIN tile ON boat.id = tile.id
+      JOIN tile ON boat.coord_x=tile.coord_x and boat.coord_y=tile.coord_y
       ${where ? 'WHERE boat.name LIKE ?' : ''}
       ORDER BY boat.coord_y, boat.coord_x`;
 
