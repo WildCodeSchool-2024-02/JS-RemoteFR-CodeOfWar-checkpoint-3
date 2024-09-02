@@ -7,7 +7,16 @@ class BoatRepository extends AbstractRepository {
 
   async readAll() {
     // Execute the SQL SELECT query to retrieve all boats from the "boat" table
-    const [rows] = await this.database.query(`select * from ${this.table}`);
+    const [rows] = await this.database.query(`SELECT 
+      b.id as boat_id, 
+      b.name, 
+      b.coord_x, 
+      b.coord_y, 
+      t.id as tile_id
+FROM ${this.table} as b
+    inner JOIN tile as t
+    ON b.coord_x = t.coord_x
+    AND b.coord_y = t.coord_y;`);
 
     // Return the array of boats
     return rows;
