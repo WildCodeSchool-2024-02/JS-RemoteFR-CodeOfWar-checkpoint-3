@@ -13,3 +13,13 @@ CREATE TABLE tile (
   coord_y INT NOT NULL,
   PRIMARY KEY(id)
 );
+ALTER TABLE tile
+ADD COLUMN has_treasure BOOLEAN DEFAULT 0 NOT NULL;
+
+ALTER TABLE tile
+DROP COLUMN has_treasure;
+
+ALTER TABLE tile
+ADD COLUMN has_treasure BOOLEAN DEFAULT 0 NOT NULL;
+
+
