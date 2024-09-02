@@ -1,3 +1,4 @@
+/* eslint-disable camelcase */
 const tables = require("../../database/tables");
 
 const browse = async (req, res, next) => {
@@ -13,6 +14,22 @@ const browse = async (req, res, next) => {
   }
 };
 
+const edit = async (req, res, next) => {
+  const { id } = req.params;
+  const { coord_x, coord_y } = req.body;
+  try {
+    const affectedRows = await tables.boat.update({ id, coord_x, coord_y });
+    if (affectedRows > 0) {
+      res.status(204).json({ message: "Boat updated successfully" });
+    } else {
+      res.status(404).json({ message: "Boat not found" });
+    }
+  } catch (err) {
+    next(err);
+  }
+};
+
 module.exports = {
   browse,
+  edit,
 };
