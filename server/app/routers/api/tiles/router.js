@@ -6,4 +6,5 @@ const { browse } = require("../../../controllers/tileActions");
 
 router.get("/", browse);
 
+
 module.exports = router;
