@@ -1,3 +1,4 @@
+/* eslint-disable consistent-return */
 const AbstractRepository = require("./AbstractRepository");
 
 class BoatRepository extends AbstractRepository {
@@ -5,9 +6,10 @@ class BoatRepository extends AbstractRepository {
     super({ table: "boat" });
   }
 
-  async readAll() {
+  async readAll(where) {
     // Execute the SQL SELECT query to retrieve all boats from the "boat" table
-    const [rows] = await this.database.query(`SELECT 
+    try {
+    const query = `SELECT 
         boat.id, 
         boat.name, 
         boat.coord_x, 
@@ -19,10 +21,18 @@ class BoatRepository extends AbstractRepository {
         tile.has_treasure
       FROM ${this.table}
       LEFT JOIN tile ON boat.id = tile.id
-      ORDER BY boat.coord_y, boat.coord_x`);
+      ${where ? 'WHERE boat.name LIKE ?' : ''}
+      ORDER BY boat.coord_y, boat.coord_x`;
 
+    const search = where ? [`%${where}%`] : [];
+
+    const [rows] = await this.database.query(query, search);
+    
     // Return the array of boats
     return rows;
+    } catch (err) {
+      console.error(err)
+    }
   }
 
   async update(boat) {
