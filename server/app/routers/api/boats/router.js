@@ -7,9 +7,10 @@ const router = express.Router();
 /* ************************************************************************* */
 
 const { browse, edit } = require("../../../controllers/boatActions");
+const middleware = require("../../../services/tileExists");
 
 router.get("/", browse);
-router.put("/:id", edit);
+router.put("/:id", middleware, edit);
 
 /* ************************************************************************* */
 
