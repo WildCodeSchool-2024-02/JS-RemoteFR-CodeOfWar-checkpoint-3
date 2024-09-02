@@ -23,6 +23,16 @@ class TileRepository extends AbstractRepository {
     return rows[0];
   }
 
+  async readByCoordinates(coordX, coordY) {
+    if (coordX >= 0 && coordX <= 11 && coordY >= 0 && coordY <= 5) {
+      const [tiles] = await this.database.query(
+        `select coord_x, coord_y from ${this.table}`
+      );
+      return [tiles];
+    }
+    return [];
+  }
+
   async hideTreasure(island) {
     const [result] = await this.database.query(
       `update ${this.table} set has_treasure =

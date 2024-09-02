@@ -1,11 +1,9 @@
 const tables = require("../../database/tables");
 
-const tileExists = async (req, res, next) => {
+const coordinates = async (req, res, next) => {
   try {
-    const coordX = tables.tile.coord_x >= 0 && tables.tile.coord_x <= 11;
-    const coordY = tables.tile.coord_y >= 0 && tables.tile.coord_y <= 5;
-
-    if (coordX && coordY) {
+    const validate = tables.tile.readByCoordinates;
+    if (validate) {
       next();
     } else {
       res.sendStatus(422);
@@ -15,4 +13,4 @@ const tileExists = async (req, res, next) => {
   }
 };
 
-module.exports = { tileExists };
+module.exports = { coordinates };
