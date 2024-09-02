@@ -15,10 +15,8 @@ const browse = async (req, res, next) => {
 
 const edit = async (req, res, next) => {
   try {
-    // do something plus tard
     const boat = {
-      coord_x: req.body.coord_x,
-      coord_y: req.body.coord_y,
+      ...req.body,
       id: req.params.id,
     };
 
