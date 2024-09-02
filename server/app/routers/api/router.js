@@ -6,6 +6,10 @@ const router = express.Router();
 // Import And Use Routers Here
 /* ************************************************************************* */
 
+const tileRouter = require("./tile/router");
+
+router.use("/tiles", tileRouter);
+
 const boatsRouter = require("./boats/router");
 
 router.use("/boats", boatsRouter);
