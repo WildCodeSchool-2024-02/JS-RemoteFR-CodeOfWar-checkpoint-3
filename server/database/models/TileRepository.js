@@ -35,6 +35,8 @@ class TileRepository extends AbstractRepository {
 
     return result;
   }
+
+ 
 }
 
 module.exports = TileRepository;
