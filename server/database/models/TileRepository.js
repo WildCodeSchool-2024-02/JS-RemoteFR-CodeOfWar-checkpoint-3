@@ -17,11 +17,11 @@ class TileRepository extends AbstractRepository {
 
   async readByCoordinates(coordX, coordY) {
     // Check if coordX and coordY are valid numbers
-    const [rows] = await this.database.query(
-      `SELECT * FROM ${this.table} WHERE coord_x = ? AND coord_y = ?`,
+    const [result] = await this.database.query(
+      `SELECT * FROM ${this.table} WHERE coord_x = ${coordX} AND coord_y = ${coordY}`,
       [coordX, coordY]
     );
-    return rows;
+    return result;
   }
 
   async getRandomIsland() {
