@@ -14,6 +14,10 @@ const gamesRouter = require("./games/router");
 
 router.use("/games", gamesRouter);
 
+const tileRouter = require("./tiles/router");
+
+router.use("/tiles", tileRouter);
+
 /* ************************************************************************* */
 
 module.exports = router;
