@@ -6,7 +6,15 @@ class BoatRepository extends AbstractRepository {
   }
 
   async readAll() {
-    const [rows] = await this.database.query(`select * from ${this.table}`);
+    const [rows] = await this.database.query(`select 
+boat.id, 
+boat.name, 
+boat.coord_x, 
+boat.coord_y, 
+tile.type, 
+tile.has_treasure 
+from ${this.table} 
+inner join tile on boat.coord_x=tile.coord_x and boat.coord_y=tile.coord_y`);
 
     return rows;
   }

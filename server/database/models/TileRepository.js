@@ -40,6 +40,7 @@ class TileRepository extends AbstractRepository {
     const [result] = await this.database.query(
       `select * from ${this.table} where coord_x = ${coordX} and coord_y = ${coordY}`
     );
+
     return result;
   }
 }
