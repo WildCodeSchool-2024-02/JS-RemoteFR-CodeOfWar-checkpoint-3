@@ -2,8 +2,8 @@ const express = require("express");
 
 const router = express.Router();
 
-const { browse } = require("../../../controllers/tileActions");
+const tileActions = require("../../../controllers/tileActions");
 
-router.get("/", browse);
+router.get("/", tileActions.browse);
 
 module.exports = router;

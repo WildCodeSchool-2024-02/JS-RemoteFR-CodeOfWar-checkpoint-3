@@ -10,4 +10,5 @@ const browse = async (req, res, next) => {
     next(err);
   }
 };
+
 module.exports = { browse };
