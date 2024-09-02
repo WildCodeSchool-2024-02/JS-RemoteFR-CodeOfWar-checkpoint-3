@@ -17,7 +17,7 @@ const edit = async (req, res, next) => {
   try {
     const { id } = req.params;
     const { coord_x: coordX, coord_y: coordY } = req.body;
-    await tables.boat.updateOne(id, { x: coordX, y: coordY });
+    await tables.boat.update({id, coord_x: coordX, coord_y: coordY });
     res.status(204).end();
   } catch (err) {
     next(err);
